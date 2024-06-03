@@ -39,7 +39,7 @@ class CategoryImporter:
         return False
 
 if __name__ == "__main__":
-    odoo = OdooConnector('o16db', 'admin', 'bgt56yhn*971', 'http://localhosts:8069')
+    odoo = OdooConnector('o16db', 'admin', 'bgt56yhn*971', 'http://localhost:8069')
     importer = CategoryImporter(odoo, '_categorias.xlsx')
     importer.import_categories('product.category')
     importer.import_categories('pos.category')
