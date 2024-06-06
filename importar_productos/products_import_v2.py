@@ -5,7 +5,7 @@ csv.field_size_limit(1000000)
 # Por tema acentos y eñes
 xmlrpc.client.Transport.use_unicode = True 
 
-url = 'http://odoo.local:8069'
+url = 'http://localhost:8069'
 db = 'o16db'
 username = 'admin'
 password = 'bgt56yhn*971'
