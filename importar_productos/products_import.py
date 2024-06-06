@@ -5,7 +5,7 @@ csv.field_size_limit(1000000)
 #por tema acentos y eñes
 xmlrpc.client.Transport.use_unicode = True 
 
-url = 'http://localhost:8069'
+url = 'http://odoo.local:8069'
 db = 'o16db'
 username = 'admin'
 password = 'bgt56yhn*971'
@@ -53,7 +53,7 @@ class OdooAPI:
 
 odoo = OdooAPI(url, db, username, password)
 contador=1
-with open('_product.template.csv', newline='', encoding='utf-8') as csvfile:
+with open('exported_products.csv', newline='', encoding='utf-8') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     for row in reader:
         default_code = row[0]

@@ -5,7 +5,7 @@ csv.field_size_limit(1000000)
 # Por tema acentos y eñes
 xmlrpc.client.Transport.use_unicode = True 
 
-url = 'http://localhost:8069'
+url = 'http://odoo.local:8069'
 db = 'o16db'
 username = 'admin'
 password = 'bgt56yhn*971'
@@ -49,7 +49,7 @@ public_categories = {}
 taxes = {}
 supplier_taxes = {}
 
-with open('_product.template.csv', newline='', encoding='utf-8') as csvfile:
+with open('productos.csv', newline='', encoding='utf-8') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     next(reader)  # Skip header row
     products = []
