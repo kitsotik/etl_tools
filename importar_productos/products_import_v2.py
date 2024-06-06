@@ -49,7 +49,7 @@ public_categories = {}
 taxes = {}
 supplier_taxes = {}
 
-with open('productos.csv', newline='', encoding='utf-8') as csvfile:
+with open('_product.template.csv', newline='', encoding='utf-8') as csvfile:
     reader = csv.reader(csvfile, delimiter=',')
     next(reader)  # Skip header row
     products = []
