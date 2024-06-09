@@ -8,7 +8,7 @@ csv.field_size_limit(1000000)
 xmlrpc.client.Transport.use_unicode = True
 
 # Detalles de conexión a Odoo
-url = 'http://odoo.local:8069'
+url = 'http://192.168.192.131:8069'
 db = 'test1'
 username = 'admin'
 password = 'bgt56yhn*971'
