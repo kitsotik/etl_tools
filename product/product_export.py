@@ -8,7 +8,7 @@ csv.field_size_limit(1000000)
 xmlrpc.client.Transport.use_unicode = True
 
 # Detalles de conexión a Odoo
-url = 'http://localhost:8069'
+url = 'http://192.168.192.131:8069'
 db = 'test1'
 username = 'admin'
 password = 'bgt56yhn*971'
@@ -41,8 +41,11 @@ class OdooAPI:
                                                           'replenishment_base_cost_currency_id',
                                                           'available_in_pos', 'pos_categ_id',
                                                           'public_categ_ids', 'taxes_id',
-                                                          'supplier_taxes_id', 'image_1920'],
-                                               'limit': 10})
+                                                          'supplier_taxes_id', 'image_1920']
+                                               })
+
+            total_products = len(products)
+            print(f"Total de productos a exportar: {total_products}")
 
             # Abre el archivo CSV para escritura
             with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
@@ -54,9 +57,8 @@ class OdooAPI:
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
                 writer.writeheader()
 
-                # Escribe cada producto en el archivo CSV
-                for product in products:
-                    #print(product)  # Imprime todo el producto para verificar los datos
+                # Escribe cada producto en el archivo CSV y muestra el progreso
+                for index, product in enumerate(products, start=1):
                     category_name = self._get_category_name(product.get('categ_id', ()))
                     pos_categ_name = self._get_pos_category_name(product.get('pos_categ_id', ()))
                     public_categ_name = self._get_public_category_name(product.get('public_categ_ids', []))
@@ -78,6 +80,9 @@ class OdooAPI:
                                      'taxes': taxes_name,
                                      'supplier_taxes': supplier_taxes_name,
                                      'image_1920': product.get('image_1920', '')})
+
+                    # Muestra el progreso
+                    print(f"Exportando producto {index}/{total_products}: {product.get('name', '')}")
 
             print("Exportación completada correctamente.")
         except Exception as e:

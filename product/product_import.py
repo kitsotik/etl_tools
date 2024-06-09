@@ -8,7 +8,7 @@ csv.field_size_limit(1000000)
 xmlrpc.client.Transport.use_unicode = True
 
 # Detalles de conexión a Odoo
-url = 'http://localhost:8069'
+url = 'http://odoo.local:8069'
 db = 'test1'
 username = 'admin'
 password = 'bgt56yhn*971'
@@ -47,24 +47,30 @@ class OdooAPI:
                     # Obtener el ID de la moneda
                     currency_id = self._get_currency_id(row['replenishment_base_cost_currency'])
 
+                    # Crear el diccionario de datos para el producto
+                    product_data = {
+                        'default_code': row['default_code'],
+                        'name': row['name'],
+                        'categ_id': category_id,
+                        'type': row['type'],
+                        'list_price_type': row['list_price_type'],
+                        'sale_margin': row['sale_margin'],
+                        'replenishment_base_cost': row['replenishment_base_cost'],
+                        'replenishment_base_cost_currency_id': currency_id,
+                        'available_in_pos': row['available_in_pos'],
+                        'pos_categ_id': pos_category_id,
+                        'public_categ_ids': [(6, 0, public_category_ids)],
+                        'taxes_id': [(6, 0, taxes_ids)],
+                        'supplier_taxes_id': [(6, 0, supplier_taxes_ids)]
+                    }
+
+                    # Añadir la imagen si está presente y no es False
+                    if row['image_1920'] and row['image_1920'].lower() != 'false':
+                        product_data['image_1920'] = row['image_1920']
+
                     # Crear el producto en Odoo
                     product_id = self.models.execute_kw(self.db, self.uid, self.password,
-                                                        'product.product', 'create', [{
-                                                            'default_code': row['default_code'],
-                                                            'name': row['name'],
-                                                            'categ_id': category_id,
-                                                            'type': row['type'],
-                                                            'list_price_type': row['list_price_type'],
-                                                            'sale_margin': row['sale_margin'],
-                                                            'replenishment_base_cost': row['replenishment_base_cost'],
-                                                            'replenishment_base_cost_currency_id': currency_id,
-                                                            'available_in_pos': row['available_in_pos'],
-                                                            'pos_categ_id': pos_category_id,
-                                                            'public_categ_ids': [(6, 0, public_category_ids)],
-                                                            'taxes_id': [(6, 0, taxes_ids)],
-                                                            'supplier_taxes_id': [(6, 0, supplier_taxes_ids)],
-                                                            'image_1920': row['image_1920']
-                                                        }])
+                                                        'product.product', 'create', [product_data])
                     print(f"Producto '{row['name']}' creado con ID {product_id}")
 
             print("Importación completada correctamente.")
