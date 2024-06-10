@@ -41,7 +41,7 @@ class CategoryImporter:
 
 if __name__ == "__main__":
     odoo = OdooConnector('test1', 'admin', 'bgt56yhn*971', 'http://odoo.local:8069')
-    importer = CategoryImporter(odoo, '_categorias.csv')
+    importer = CategoryImporter(odoo, 'categorias.csv')
     importer.import_categories('product.category')
     importer.import_categories('pos.category')
     importer.import_categories('product.public.category')
