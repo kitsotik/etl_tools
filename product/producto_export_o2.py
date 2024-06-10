@@ -10,7 +10,7 @@ xmlrpc.client.Transport.use_unicode = True
 
 # Detalles de conexión a Odoo
 url = 'http://localhost:8069'
-db = 'o16dbs'
+db = 'o16db'
 username = 'admin'
 password = 'bgt56yhn*971'
 
