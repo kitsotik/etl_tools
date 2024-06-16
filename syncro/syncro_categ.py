@@ -46,11 +46,32 @@ def buscar_o_crear_categoria(models, db, uid, password, model, categoria, catego
             'parent_id': parent_id
         }])
 
+# Función para ordenar las categorías en base a su jerarquía
+def ordenar_categorias(categorias):
+    categorias_dict = {categoria['id']: categoria for categoria in categorias}
+    categorias_ordenadas = []
+    
+    def add_categoria(categoria):
+        if 'added' in categoria:
+            return
+        if categoria['parent_id']:
+            parent_id = categoria['parent_id'][0]
+            if parent_id in categorias_dict:
+                add_categoria(categorias_dict[parent_id])
+        categorias_ordenadas.append(categoria)
+        categoria['added'] = True
+    
+    for categoria in categorias:
+        add_categoria(categoria)
+    
+    return categorias_ordenadas
+
 # Sincronización de categorías entre las tablas
 modelos = ['product.category', 'pos.category', 'product.public.category']
 
 for modelo in modelos:
     categorias_origen = obtener_categorias(models_origen, db_origen, uid_origen, password_origen, modelo)
+    categorias_origen = ordenar_categorias(categorias_origen)
     categorias_destino = obtener_categorias(models_destino, db_destino, uid_destino, password_destino, modelo)
     
     for categoria in categorias_origen:
