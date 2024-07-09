@@ -21,7 +21,7 @@ modules_to_install = [
     'stock',
     'purchase',
     'point_of_sale',
-    'manufacturing',
+    'mrp',
     'website',
     'website_sale',
     
