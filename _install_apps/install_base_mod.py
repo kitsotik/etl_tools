@@ -21,8 +21,10 @@ modules_to_install = [
     'stock',
     'purchase',
     'point_of_sale',
+    'manufacturing',
     'website',
     'website_sale',
+    
     # Agrega tantos módulos como necesites
 ]
 
