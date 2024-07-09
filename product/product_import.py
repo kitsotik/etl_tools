@@ -2,7 +2,7 @@ import xmlrpc.client
 import csv
 
 # Establecer el límite del tamaño de campo CSV
-csv.field_size_limit(1000000)
+csv.field_size_limit(sys.maxsize)
 
 # Permitir caracteres unicode
 xmlrpc.client.Transport.use_unicode = True
