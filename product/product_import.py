@@ -1,5 +1,6 @@
 import xmlrpc.client
 import csv
+import sys
 
 # Establecer el límite del tamaño de campo CSV
 csv.field_size_limit(sys.maxsize)
@@ -8,8 +9,8 @@ csv.field_size_limit(sys.maxsize)
 xmlrpc.client.Transport.use_unicode = True
 
 # Detalles de conexión a Odoo
-url = 'http://192.168.192.131:8069'
-db = 'test1'
+url = 'http://localhost:8069'
+db = 'o16db'
 username = 'admin'
 password = 'bgt56yhn*971'
 
