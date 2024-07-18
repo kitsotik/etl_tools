@@ -32,6 +32,7 @@ modules_to_install = [
     'l10n_ar_ux',
     'l10n_ar_website_sale',
     'web_responsive',
+    'adhoc-stock_voucher'
     'product_planned_price',
     'product_replenishment_cost',
     'product_internal_code',
