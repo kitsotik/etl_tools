@@ -50,8 +50,8 @@ modules_to_install = [
     'product_replenishment_cost',
     'product_internal_code',
     'product_prices_update',
-    'pos_l10n_ar_identification'
-    'currency_update_exchange_rate_bna'
+    'pos_l10n_ar_identification',
+    'currency_update_exchange_rate_bna',
     #'meli_oerp',
     #'auto_backup',
     # Agrega tantos módulos como necesites
