@@ -18,7 +18,7 @@ modules_to_install = [
     'om_account_accountant',
     'l10n_ar',
     'l10n_ar_afipws',
-    'l10n_ar_afipws_caea',
+    #'l10n_ar_afipws_caea',
     'l10n_ar_afipws_fe',
     'l10n_ar_bank',
     'l10n_ar_pos_afipws_fe',
