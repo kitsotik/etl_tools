@@ -1,8 +1,8 @@
 import xmlrpc.client
 
 # Configuración de conexión
-url = 'http://localhost:8069'  # URL del servidor Odoo
-db = 'o16db'
+url = 'http://192.168.192.155:18069'  # URL del servidor Odoo
+db = 'o17db'
 username = 'admin'
 password = 'bgt56yhn*971'
 
@@ -15,10 +15,10 @@ models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
 
 # Lista de módulos a instalar
 modules_to_install = [
+    'web_responsive',
     'om_account_accountant',
-    'l10n_ar',
+    'l10n_ar_account_withholding_ratio',
     'l10n_ar_afipws',
-    #'l10n_ar_afipws_caea',
     'l10n_ar_afipws_fe',
     'l10n_ar_bank',
     'l10n_ar_pos_afipws_fe',
@@ -31,7 +31,11 @@ modules_to_install = [
     'l10n_ar_stock_delivery',
     'l10n_ar_ux',
     'l10n_ar_website_sale',
-    'web_responsive',
+    'l10n_ar_withholding_ux',
+    'l10n_ar',
+    'l10n_ar_account_withholding',
+    'l10n_ar_pos',
+    'l10n_ar_withholding',
     'product_planned_price',
     'product_replenishment_cost',
     'product_internal_code',
@@ -40,18 +44,8 @@ modules_to_install = [
     'account_move_line_reconcile_manual',
     'account_move_reconcile_forbid_cancel',
     'account_reconcile_oca',
-    'pos_default_partner',
-    'pos_order_reorder',
-    'pos_stock_available_online',
-    'pos_order_to_sale_order',
-    'pos_lot_selection',
-    'pos_lot_barcode',
-    'product_planned_price',
-    'product_replenishment_cost',
-    'product_internal_code',
-    'product_prices_update',
-    'pos_l10n_ar_identification',
-    'currency_update_exchange_rate_bna',
+    'partner_statement'
+    #'currency_update_exchange_rate_bna',
     #'meli_oerp',
     #'auto_backup',
     # Agrega tantos módulos como necesites
@@ -75,5 +69,5 @@ for module in modules_to_install:
                 print(f'Error al instalar el módulo {module}: {e}')
         else:
             print(f'Módulo {module} no encontrado.')
-
+    
 print('Proceso de instalación de módulos completado.')
